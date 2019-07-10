@@ -1,6 +1,6 @@
 #include "../includes/parser.h"
 
-void	init_soundName(t_snd *snd)
+void	init_name(t_snd *snd)
 {
 	snd->effect[0].name = ft_strdup("arrow_1");
 	snd->effect[1].name = ft_strdup("arrow_2");
