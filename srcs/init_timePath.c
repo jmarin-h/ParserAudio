@@ -27,25 +27,28 @@ void	init_time(t_efct *efct, FILE *wavFd)
 		(buff4[2] << 16) |
 		(buff4[3] << 24);
 	efct->in_seconds = (float)ovl_size / byterate;
-	printf("Duration in seconds: %f\n", in_seconds);
+	printf("Duration in seconds: %f\n", efct->in_seconds);
 }
 
-int		init_path(t_efct *efct)
+int			init_path(t_efct *efct)
 {
-	FILE		*wavFd = NULL;
+	char	*str;
+	FILE	*wavFd;
 
+	wavFd = NULL;
 	if(!(efct->path = malloc(sizeof(char) * 1024)))
 		return(ft_error("Error malloc filepath"));
 	if(!(getcwd(efct->path, 1024)))
 		return(ft_error("Error parse Filename"));
-	ft_strcat(efct->path, "/");
+	ft_strcat(efct->path, "/srcs/sounds/");
 	ft_strcat(efct->path, efct->name);
-	wavFd = fopen(efct->path, "rb");
+	str = ft_strjoin(efct->path, ".wav");
+	wavFd = fopen(str, "rb");
 	if (wavFd == NULL)
 		return(ft_error("Error opening file"));
 	printf("File name : %s\n", efct->name);
 	printf("File path : %s\n", efct->path);
-	init_time(&efct, wavFd);
+	init_time(efct, wavFd);
 	fclose(wavFd);
 	return(0);
 }

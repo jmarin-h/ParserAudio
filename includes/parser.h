@@ -6,7 +6,7 @@
 /*   By: jmarin-h <jmarin-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 19:07:17 by jmarin-h          #+#    #+#             */
-/*   Updated: 2019/07/10 14:13:04 by jmarin-h         ###   ########.fr       */
+/*   Updated: 2019/07/10 16:12:43 by jmarin-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "libft/libft.h"
 #include <math.h>
 #include <stdio.h>
+#define NB 40
 //#include "sound.h"
 
 typedef	struct		s_efct
@@ -29,7 +30,8 @@ typedef	struct		s_efct
 
 typedef	struct	s_snd
 {
-	t_efct		*arrow_1;
+	t_efct		effect[NB];
+/*	t_efct		*arrow_1;
 	t_efct		*arrow_2;
 	t_efct		*boomerang;
 	t_efct		*explosion_1;
@@ -68,15 +70,15 @@ typedef	struct	s_snd
 	t_efct		*water_splash;
 	t_efct		*whip_1;
 	t_efct		*whip_2;
-	t_efct		end;
+	t_efct		end;*/
 }				t_snd;
 
 int		ft_error(char *str);
 int		init_path(t_efct *efct);
 int		init_name(t_efct *efct);
-void	parsSongs();
-void	init_soundName(t_snd snd);
-void	init_time(t_snd *snd, FILE *wavFd);
+void	parsSongs(t_snd *snd);
+void	init_soundName(t_snd *snd);
+void	init_time(t_efct *efct, FILE *wavFd);
 void	playSound(char *sound, int start, int end);
 
 #endif

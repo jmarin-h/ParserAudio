@@ -6,7 +6,7 @@
 /*   By: jmarin-h <jmarin-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 19:06:14 by jmarin-h          #+#    #+#             */
-/*   Updated: 2019/07/10 14:13:02 by jmarin-h         ###   ########.fr       */
+/*   Updated: 2019/07/10 17:35:25 by jmarin-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int		init_name(t_efct *efct)
 		return(0);
 }
 
-void	parsSongs(t_snd snd)
+void	parsSongs(t_snd *snd)
 {
 	int		i;
 	int		error;
@@ -63,13 +63,12 @@ void	parsSongs(t_snd snd)
 	error = 0;
 	i = 0;
 	ft_putendl("Init parsSongs...");
-//	snd = malloc(sizeof(t_snd));
 	init_soundName(snd);
-	while(snd.efct != NULL && error == 0)
+	while(i < NB && error == 0)
 	{
-		error = init_name(snd.efct);
-		error = init_path(snd.efct);
-		snd.efct++;
+		error = init_path(&snd->effect[i]);
+//		error = init_name(&snd->effect[i]);
+		i++;
 	}
 }
 
@@ -77,7 +76,9 @@ int		main(int ac, char **av)
 {
 	t_snd	snd;
 
-	parsSongs(snd);
+	snd = *(t_snd *)malloc(sizeof(t_snd));
+//	snd.effect[NB] = NULL;
+	parsSongs(&snd);
 	if(ac == 2)
 	{
 		playSound(av[1], 0, 0);
