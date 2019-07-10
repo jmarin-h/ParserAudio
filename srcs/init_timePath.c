@@ -1,6 +1,6 @@
 #include "../includes/parser.h"
 
-void	init_time(t_snd *snd, FILE *wavFd)
+void	init_time(t_efct *efct, FILE *wavFd)
 {
 	int				read;
 	unsigned char	buff2[2];
@@ -26,26 +26,26 @@ void	init_time(t_snd *snd, FILE *wavFd)
 		(buff4[1] << 8) |
 		(buff4[2] << 16) |
 		(buff4[3] << 24);
-	snd->in_seconds = (float)ovl_size / byterate;
+	efct->in_seconds = (float)ovl_size / byterate;
 	printf("Duration in seconds: %f\n", in_seconds);
 }
 
-int		init_path(t_snd snd)
+int		init_path(t_efct *efct)
 {
 	FILE		*wavFd = NULL;
 
-	if(!(snd.efct.path = malloc(sizeof(char) * 1024)))
+	if(!(efct->path = malloc(sizeof(char) * 1024)))
 		return(ft_error("Error malloc filepath"));
-	if(!(getcwd(snd.efct.path, 1024)))
+	if(!(getcwd(efct->path, 1024)))
 		return(ft_error("Error parse Filename"));
-	ft_strcat(snd.efct.path, "/");
-	ft_strcat(snd.efct.path, snd.efct.name);
-	wavFd = fopen(snd.efct.path, "rb");
+	ft_strcat(efct->path, "/");
+	ft_strcat(efct->path, efct->name);
+	wavFd = fopen(efct->path, "rb");
 	if (wavFd == NULL)
 		return(ft_error("Error opening file"));
-	printf("File name : %s\n", snd.efct.name);
-	printf("File path : %s\n", snd.efct.path);
-	init_time(&snd, wavFd);
+	printf("File name : %s\n", efct->name);
+	printf("File path : %s\n", efct->path);
+	init_time(&efct, wavFd);
 	fclose(wavFd);
 	return(0);
 }

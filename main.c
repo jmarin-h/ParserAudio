@@ -6,7 +6,7 @@
 /*   By: jmarin-h <jmarin-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 19:06:14 by jmarin-h          #+#    #+#             */
-/*   Updated: 2019/07/10 13:46:06 by jmarin-h         ###   ########.fr       */
+/*   Updated: 2019/07/10 14:13:02 by jmarin-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,11 @@ void	parsSongs(t_snd snd)
 	ft_putendl("Init parsSongs...");
 //	snd = malloc(sizeof(t_snd));
 	init_soundName(snd);
-	while(snd[i] != NULL && error == 0)
+	while(snd.efct != NULL && error == 0)
 	{
-		error = init_name(snd[i]);
-		error = init_path(snd[i]);
-		i++;
+		error = init_name(snd.efct);
+		error = init_path(snd.efct);
+		snd.efct++;
 	}
 }
 
