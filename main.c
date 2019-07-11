@@ -12,17 +12,38 @@
 
 #include "includes/parser.h"
 
-void	playSound(char	*sound, int start, int vol)
+void	vol_sound(char *sound, int vol)
 {
-	if(start == 0)
+}
+
+void	cut_sound(char *sound, float start, float end)
+{
+}
+
+void	playSound(t_snd *snd, char *sound, float start, float end, unsigned int vol)
+{
+	int		i;
+	int		ok;
+	char	*str;
+
+	i = 0;
+	ok = 0;
+	while(i <= SOUNDS)
 	{
-		system(sound);
-		//system("afplay ./includes/sound/sound.mp3&");
-	}
-	else
-	{
-//		cut_sound(sound, start, end);
-		system(sound);
+		if(ft_strcmp(sound, snd->effect[i].name) == 0)
+		{
+			ok = 1;
+			if(start != 0)
+				cut_sound(snd->effect[i].path, start, end);
+			if(vol != 128)
+				vol_sound(snd->effect[i].path, vol);
+			str = ft_strjoin("afplay ", snd->effect[i].path);
+			str = ft_strjoin(str, ".wav&");
+			system(str);
+		}
+		if(i == SOUNDS && ok == 0)
+			ft_putendl("Sound not found.");
+		i++;
 	}
 }
 
@@ -42,7 +63,7 @@ void	parsSongs(t_snd *snd)
 	i = 0;
 	ft_putendl("Init parsSongs...");
 	init_name(snd);
-	while(i <= NB && error == 0)
+	while(i <= (SOUNDS - 1) && error == 0)
 	{
 		error = init_path(&snd->effect[i]);
 		i++;
@@ -57,7 +78,7 @@ int		main(int ac, char **av)
 	parsSongs(&snd);
 	if(ac == 2)
 	{
-		playSound(av[1], 0, 0);
+		playSound(&snd, av[1], 0, 0, 128);
 	}
 	return(0);
 }

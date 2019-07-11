@@ -46,8 +46,8 @@ int			init_path(t_efct *efct)
 	wavFd = fopen(str, "rb");
 	if (wavFd == NULL)
 		return(ft_error("Error opening file"));
-	printf("File name : %s\n", efct->name);
-	printf("File path : %s\n", efct->path);
+	ft_putendl(efct->name);
+	ft_putendl(efct->path);
 	init_time(efct, wavFd);
 	fclose(wavFd);
 	return(0);
