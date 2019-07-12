@@ -6,7 +6,7 @@
 /*   By: jmarin-h <jmarin-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 19:07:17 by jmarin-h          #+#    #+#             */
-/*   Updated: 2019/07/10 17:54:16 by jmarin-h         ###   ########.fr       */
+/*   Updated: 2019/07/12 16:55:44 by jmarin-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <math.h>
 #include <stdio.h>
 #define SOUNDS 38
+#define VOLUME_MAX 128
 
 typedef	struct		s_efct
 {
@@ -25,6 +26,13 @@ typedef	struct		s_efct
 	float			in_seconds;
 	unsigned int	volume;
 }					t_efct;
+
+typedef struct		s_chnl
+{
+	int				num_channels;
+	int				channel;
+	int				volume;
+}					t_chnl;
 
 typedef	struct	s_snd
 {

@@ -6,7 +6,7 @@
 /*   By: jmarin-h <jmarin-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 19:06:14 by jmarin-h          #+#    #+#             */
-/*   Updated: 2019/07/10 17:54:19 by jmarin-h         ###   ########.fr       */
+/*   Updated: 2019/07/12 16:55:47 by jmarin-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int		main(int ac, char **av)
 	parsSongs(&snd);
 	if(ac == 2)
 	{
-		playSound(&snd, av[1], 0, 0, 128);
+		playSound(&snd, av[1], 0, 0, VOLUME_MAX);
 	}
 	return(0);
 }
