@@ -36,13 +36,15 @@ typedef struct		s_chnl
 
 typedef	struct	s_snd
 {
+	int			invtr;
+	int			num_sound;
 	t_efct		effect[SOUNDS];
 }				t_snd;
 
 int		ft_error(char *str);
 int		init_path(t_efct *efct);
-void	parsSongs(t_snd *snd, int fd);
-void	init_name(t_snd *snd, int invtr);
+void	parsSongs(t_snd *snd);
+void	init_name(t_snd *snd);
 void	init_time(t_efct *efct, FILE *wavFd);
 void	cut_sound(char *sound, float start, float end);
 void	playSound(t_snd *snd, char *sound, float start, float end, unsigned int vol);

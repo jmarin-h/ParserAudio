@@ -58,7 +58,7 @@ int		ft_error(char *str)
 	return(1);
 }
 
-void	parsSongs(t_snd *snd, int fd)
+void	parsSongs(t_snd *snd)
 {
 	int		i;
 	int		error;
@@ -66,7 +66,7 @@ void	parsSongs(t_snd *snd, int fd)
 	error = 0;
 	i = 0;
 	ft_putendl("Init parsSongs...");
-	init_name(snd, fd);
+	init_name(snd);
 	while(i <= (SOUNDS - 1) && error == 0)
 	{
 		error = init_path(&snd->effect[i]);
@@ -76,15 +76,16 @@ void	parsSongs(t_snd *snd, int fd)
 
 int		main(int ac, char **av)
 {
-	int	fd;
+	int		fd;
 	t_snd	snd;
 
-	fd = open("sound.txt", O_WRONLY);
 	snd = *(t_snd *)malloc(sizeof(t_snd));
-	parsSongs(&snd, fd);
+	if(!(snd.invtr = open(av[1], O_RDONLY)))
+		return(ft_error("Error open file."));
+	if(ac >= 2)
+		parsSongs(&snd);
 	if(ac == 3)
-	{
 		playSound(&snd, av[2], 0, 0, VOLUME_MAX);
-	}
+	close(snd.invtr);
 	return(0);
 }

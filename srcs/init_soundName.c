@@ -1,14 +1,15 @@
 #include "../includes/parser.h"
 
-void	init_name(t_snd *snd, int fd)
+void	init_name(t_snd *snd)
 {
-	int	i;
-	char	**invtr;
+	int		i;
+	char	*line;
 
 	i = 0;
-	while(get_next_line(fd, invtr) == 1)
+	line = NULL;
+	while(get_next_line(snd->invtr, &line))
 	{
-		snd->effect[i].name = ft_strdup(invtr[i]);
+		snd->effect[i].name = ft_strdup(line);
 		i++;
 	}
 }
