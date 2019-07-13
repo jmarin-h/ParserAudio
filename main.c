@@ -6,7 +6,7 @@
 /*   By: jmarin-h <jmarin-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 19:06:14 by jmarin-h          #+#    #+#             */
-/*   Updated: 2019/07/13 13:13:48 by jmarin-h         ###   ########.fr       */
+/*   Updated: 2019/07/13 15:46:13 by jmarin-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,11 @@ int		main(int ac, char **av)
 	t_snd	snd;
 
 	snd = *(t_snd *)malloc(sizeof(t_snd));
-	if(!(snd.invtr = open(av[1], O_RDONLY)))
+	if(!(snd.invtr = open("sound.txt", O_RDONLY)))
 		return(ft_error("Error open file."));
-	if(ac >= 2)
-		parsSongs(&snd);
-	if(ac == 3)
-		playSound(&snd, av[2], 0, 0, VOLUME_MAX);
+	parsSongs(&snd);
+	if(ac == 2)
+		playSound(&snd, av[1], 0, 0, VOLUME_MAX);
 	close(snd.invtr);
 	return(0);
 }
