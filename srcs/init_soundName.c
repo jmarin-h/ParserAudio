@@ -1,6 +1,19 @@
 #include "../includes/parser.h"
 
-void	init_name(t_snd *snd)
+void	init_name(t_snd *snd, int fd)
+{
+	int	i;
+	char	**invtr;
+
+	i = 0;
+	while(get_next_line(fd, invtr) == 1)
+	{
+		snd->effect[i].name = ft_strdup(invtr[i]);
+		i++;
+	}
+}
+/*
+void	init_name(t_snd *snd, int invtr)
 {
 	snd->effect[0].name = ft_strdup("arrow_1");
 	snd->effect[1].name = ft_strdup("arrow_2");
@@ -40,4 +53,4 @@ void	init_name(t_snd *snd)
 	snd->effect[35].name = ft_strdup("water_splash");
 	snd->effect[36].name = ft_strdup("whip_1");
 	snd->effect[37].name = ft_strdup("whip_2");
-}
+}*/

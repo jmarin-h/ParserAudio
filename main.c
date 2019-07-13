@@ -6,7 +6,7 @@
 /*   By: jmarin-h <jmarin-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 19:06:14 by jmarin-h          #+#    #+#             */
-/*   Updated: 2019/07/12 16:55:47 by jmarin-h         ###   ########.fr       */
+/*   Updated: 2019/07/13 13:13:48 by jmarin-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 
 void	vol_sound(char *sound, int vol)
 {
+	int	i;
+	int	volume;
+
+	i = 0;
 }
 
 void	cut_sound(char *sound, float start, float end)
@@ -54,7 +58,7 @@ int		ft_error(char *str)
 	return(1);
 }
 
-void	parsSongs(t_snd *snd)
+void	parsSongs(t_snd *snd, int fd)
 {
 	int		i;
 	int		error;
@@ -62,7 +66,7 @@ void	parsSongs(t_snd *snd)
 	error = 0;
 	i = 0;
 	ft_putendl("Init parsSongs...");
-	init_name(snd);
+	init_name(snd, fd);
 	while(i <= (SOUNDS - 1) && error == 0)
 	{
 		error = init_path(&snd->effect[i]);
@@ -72,13 +76,15 @@ void	parsSongs(t_snd *snd)
 
 int		main(int ac, char **av)
 {
+	int	fd;
 	t_snd	snd;
 
+	fd = open("sound.txt", O_WRONLY);
 	snd = *(t_snd *)malloc(sizeof(t_snd));
-	parsSongs(&snd);
-	if(ac == 2)
+	parsSongs(&snd, fd);
+	if(ac == 3)
 	{
-		playSound(&snd, av[1], 0, 0, VOLUME_MAX);
+		playSound(&snd, av[2], 0, 0, VOLUME_MAX);
 	}
 	return(0);
 }

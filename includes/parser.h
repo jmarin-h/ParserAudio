@@ -6,7 +6,7 @@
 /*   By: jmarin-h <jmarin-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 19:07:17 by jmarin-h          #+#    #+#             */
-/*   Updated: 2019/07/12 16:55:44 by jmarin-h         ###   ########.fr       */
+/*   Updated: 2019/07/13 13:14:23 by jmarin-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ typedef	struct	s_snd
 
 int		ft_error(char *str);
 int		init_path(t_efct *efct);
-void	parsSongs(t_snd *snd);
-void	init_name(t_snd *snd);
+void	parsSongs(t_snd *snd, int fd);
+void	init_name(t_snd *snd, int invtr);
 void	init_time(t_efct *efct, FILE *wavFd);
 void	cut_sound(char *sound, float start, float end);
 void	playSound(t_snd *snd, char *sound, float start, float end, unsigned int vol);
