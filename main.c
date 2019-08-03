@@ -6,7 +6,7 @@
 /*   By: jmarin-h <jmarin-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 19:06:14 by jmarin-h          #+#    #+#             */
-/*   Updated: 2019/07/13 15:46:13 by jmarin-h         ###   ########.fr       */
+/*   Updated: 2019/08/03 21:35:14 by jmarin-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ void	playSound(t_snd *snd, char *sound, float start, float end, unsigned int vol
 				cut_sound(snd->effect[i].path, start, end);
 			if(vol != 128)
 				vol_sound(snd->effect[i].path, vol);
-			str = ft_strjoin("afplay ", snd->effect[i].path);
+//			str = ft_strjoin("afplay ", snd->effect[i].path);
+			str = ft_strjoin("mplayer ", snd->effect[i].path);
 			str = ft_strjoin(str, ".wav&");
 			system(str);
 		}
@@ -76,15 +77,18 @@ void	parsSongs(t_snd *snd)
 
 int		main(int ac, char **av)
 {
-	int		fd;
 	t_snd	snd;
 
 	snd = *(t_snd *)malloc(sizeof(t_snd));
 	if(!(snd.invtr = open("sound.txt", O_RDONLY)))
 		return(ft_error("Error open file."));
 	parsSongs(&snd);
-	if(ac == 2)
+	if(ac >= 2)
+	{
 		playSound(&snd, av[1], 0, 0, VOLUME_MAX);
+		if(ac == 3 && ft_strcmp(av[2], "info") == 0)
+			get_SoundInfo(&snd, av[1]);
+	}
 	close(snd.invtr);
 	return(0);
 }

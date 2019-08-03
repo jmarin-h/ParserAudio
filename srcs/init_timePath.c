@@ -5,16 +5,14 @@ void	init_time(t_efct *efct, FILE *wavFd)
 	int				read;
 	unsigned char	buff2[2];
 	unsigned char	buff4[4];
-	unsigned int	ovl_size;
 	unsigned int	byterate;
 
 	read = fread(buff4, sizeof(buff4), 1, wavFd);
 	read = fread(buff4, sizeof(buff4), 1, wavFd);
-	ovl_size  = 	 buff4[0] |
+	efct->ovl_size  = 	 buff4[0] |
 		(buff4[1]<<8) |
 		(buff4[2]<<16) |
 		(buff4[3]<<24);
-	printf("Overall size (bytes:%u, Kb:%u) ... ", ovl_size, ovl_size / 1024);
 	read = fread(buff4, sizeof(buff4), 1, wavFd);
 	read = fread(buff4, sizeof(buff4), 1, wavFd);
 	read = fread(buff4, sizeof(buff4), 1, wavFd);
@@ -26,8 +24,33 @@ void	init_time(t_efct *efct, FILE *wavFd)
 		(buff4[1] << 8) |
 		(buff4[2] << 16) |
 		(buff4[3] << 24);
-	efct->in_seconds = (float)ovl_size / byterate;
-	printf("Duration in seconds: %f\n", efct->in_seconds);
+	efct->in_seconds = (float)efct->ovl_size / byterate;
+}
+
+void			get_SoundInfo(t_snd *snd, char *sound)
+{
+	int	i;
+
+	i = 0;
+	while(snd->effect[i].name != NULL)
+	{
+		if(ft_strcmp(snd->effect[i].name, sound) == 0)
+		{
+			ft_putendl(snd->effect[i].name);
+			ft_putendl(snd->effect[i].path);
+			ft_putstr("Overall size in bytes: ");
+			ft_putnbr(snd->effect[i].ovl_size);
+			ft_putchar('\n');
+			ft_putstr("Overall size in kb: ");
+			ft_putnbr(snd->effect[i].ovl_size / 1024);
+			ft_putchar('\n');
+			ft_putstr("Duration in seconds: ");
+			ft_putnbr(snd->effect[i].in_seconds);
+			ft_putchar('\n');
+			printf("printf %f", snd->effect[i].in_seconds);
+		}
+		i++;
+	}
 }
 
 int			init_path(t_efct *efct)
@@ -46,8 +69,6 @@ int			init_path(t_efct *efct)
 	wavFd = fopen(str, "rb");
 	if (wavFd == NULL)
 		return(ft_error("Error opening file"));
-	ft_putendl(efct->name);
-	ft_putendl(efct->path);
 	init_time(efct, wavFd);
 	fclose(wavFd);
 	return(0);

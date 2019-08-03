@@ -12,6 +12,7 @@ void	init_name(t_snd *snd)
 		snd->effect[i].name = ft_strdup(line);
 		i++;
 	}
+		snd->effect[i].name = NULL;
 }
 /*
 void	init_name(t_snd *snd, int invtr)
