@@ -47,7 +47,7 @@ void			get_SoundInfo(t_snd *snd, char *sound)
 			ft_putstr("Duration in seconds: ");
 			ft_putnbr(snd->effect[i].in_seconds);
 			ft_putchar('\n');
-			printf("printf %f", snd->effect[i].in_seconds);
+			printf("printf %f\n", snd->effect[i].in_seconds);
 		}
 		i++;
 	}
