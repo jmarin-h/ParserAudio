@@ -20,7 +20,7 @@ int		init_name(t_snd *snd)
 	close(fd);
 	return(0);
 }
-
+/*
 int		init_Struct(t_snd *snd)
 {
 	int	i;
@@ -28,14 +28,11 @@ int		init_Struct(t_snd *snd)
 	i = 0;
 	while(i < snd->nb_sound)
 	{
-		snd->effect[i] = *(t_efct *)malloc(sizeof(t_efct));
-//		if(!(snd->effect[i] = (t_efct )malloc(sizeof(t_efct))))
-//			return(ft_error("Error malloc efct."));
-		i++;
+		snd->effect[i] 		
 	}
 	return (0);
 }
-
+*/
 int		parserAudio(t_snd *snd)
 {
 	int		i;
@@ -45,7 +42,7 @@ int		parserAudio(t_snd *snd)
 	i = 0;
 	ft_putendl("Initialisation Parser Audio...");
 	error = init_name(snd);
-	error = init_Struct(snd);
+//	error = init_Struct(snd);
 	while(i <= (38) && error == 0)
 	{
 		error = init_path(&snd->effect[i]);
