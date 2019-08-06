@@ -26,7 +26,7 @@ void	init_time(t_efct *efct, FILE *wavFd)
 		(buff4[3] << 24);
 	efct->in_seconds = (float)efct->ovl_size / byterate;
 }
-
+/*
 void			get_SoundInfo(t_snd *snd, char *sound)
 {
 	int	i;
@@ -52,21 +52,21 @@ void			get_SoundInfo(t_snd *snd, char *sound)
 		i++;
 	}
 }
-
+*/
 int			init_path(t_efct *efct)
 {
 	char	*str;
 	FILE	*wavFd;
 
 	wavFd = NULL;
-	if(!(efct->path = malloc(sizeof(char) * 1024)))
-		return(ft_error("Error malloc filepath"));
-	if(!(getcwd(efct->path, 1024)))
+	if(!(str = malloc(sizeof(char) * 1024)))
+		return(ft_error("Error malloc for filepath"));
+	if(!(getcwd(str, 1024)))
 		return(ft_error("Error parse Filename"));
-	ft_strcat(efct->path, "/srcs/sounds/");
-	ft_strcat(efct->path, efct->name);
-	str = ft_strjoin(efct->path, ".wav");
-	wavFd = fopen(str, "rb");
+	ft_strcat(str, "/srcs/sounds/");
+	ft_strcat(str, efct->name);
+	efct->path = ft_strjoin(str, ".wav");
+	wavFd = fopen(efct->path, "rb");
 	if (wavFd == NULL)
 		return(ft_error("Error opening file"));
 	init_time(efct, wavFd);
