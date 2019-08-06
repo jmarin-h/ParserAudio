@@ -20,19 +20,40 @@ int		init_name(t_snd *snd)
 	close(fd);
 	return(0);
 }
-/*
+
 int		init_Struct(t_snd *snd)
 {
-	int	i;
+	int		i;
+	char	*str;
 
 	i = 0;
-	while(i < snd->nb_sound)
+	while()
 	{
 		snd->effect[i] 		
 	}
 	return (0);
 }
-*/
+
+void	init_Struct(t_snd *snd)
+{
+	int		i;
+	int		fd;
+	int		*line;
+	t_efct	stSound;
+
+	i = 0;
+	line = NULL;
+	if(!(fd = open("sound.txt", O_RDONLY)));
+		return(ft_error("Error open file."));
+	stSound = malloc(sizeof(t_efct));
+	while(stSound.next)
+	{
+		get_next_line(fd, &line);
+		stSound.name = ft_strdup(line);
+		stSound.next = stSound;
+	}
+}
+
 int		parserAudio(t_snd *snd)
 {
 	int		i;
