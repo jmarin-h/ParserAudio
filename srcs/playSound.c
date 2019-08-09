@@ -6,7 +6,7 @@
 /*   By: jmarin-h <jmarin-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 19:06:14 by jmarin-h          #+#    #+#             */
-/*   Updated: 2019/08/06 17:13:58 by jmarin-h         ###   ########.fr       */
+/*   Updated: 2019/08/09 16:43:40 by jmarin-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		ft_error(char *str)
 		ft_putendl(str);
 	return(0);
 }
-
+/*
 void	vol_sound(char *sound, int vol)
 {
 	int	i;
@@ -33,7 +33,7 @@ void	cut_sound(char *sound, float start, float end)
 {
 	sound = "test";
 	start = end = 0;
-}
+}*/
 /*
 void	playSound(t_snd *snd, char *sound, float start, float end, unsigned int vol)
 {
@@ -75,17 +75,17 @@ void	playSound(t_snd *snd, char *sound, float start, float end, unsigned int vol
 	ok = 0;
 	while(i <= snd->nb_sound)
 	{
-		if(ft_strcmp(snd->effect.name, sound) == 0)
+		if(ft_strcmp(snd->effect->name, sound) == 0)
 		{
 			ok = 1;
 			if(start != 0)
-				cut_sound(snd->effect.path, start, end);
+				cut_sound(snd->effect->path, start, end);
 			if(vol != 128)
-				vol_sound(snd->effect.path, vol);
-			str = ft_strjoin("afplay ", snd->effect.path);
-		//	str = ft_strjoin("mplayer ", snd->effect.path);
+				vol_sound(snd->effect->path, vol);
+			str = ft_strjoin("afplay ", snd->effect->path);
+		//	str = ft_strjoin("mplayer ", snd->effect->path);
 			str = ft_strjoin(str, "&");
-			printf("sound path = %s\n", str);
+		//	printf("sound path = %s\n", str);
 			system(str);
 			break;
 		}

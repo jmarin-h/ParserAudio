@@ -2,10 +2,10 @@
 
 int		main(int ac, char **av)
 {
-	t_snd	*snd;
+	t_snd	snd;
 
-	snd = (t_snd *)malloc(sizeof(t_snd));
-	parserAudio(snd);
+//	snd = (t_snd *)malloc(sizeof(t_snd));
+	parserAudio(&snd);
 	if(ac >= 2)
 	{
 		printf("test %s\n", av[1]);

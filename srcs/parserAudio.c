@@ -21,48 +21,47 @@ int		init_name(t_snd *snd)
 	return(0);
 }*/
 
-t_efct	init_mlln(t_efct effect)
+int		init_mlln(t_efct *efct)
 {
-	t_efct	*efct;
-
-	if(!(efct = (t_efct)malloc(sizeof(t_efct))))
-		return(ft_error("Error malloc init_mlln."));
+	if(!(efct = (t_efct *)malloc(sizeof(t_efct))))
+		return(1);
 	efct->name = NULL;
 	efct->path = NULL;
 	efct->in_seconds = 0;
 	efct->ovl_size = 0;
 	efct->next = NULL;
-	return(efct);
+	return(0);
 }
 
 int		init_Struct(t_snd *snd)
 {
 	int		i;
 	int		fd;
+	int		error;
 	char	*line;
-	t_efct	*stSound;
+//	t_efct	stSound;
 
 	i = 0;
+	error = 0;
 	line = NULL;
-	snd->nb_sound = 0;
+	snd.nb_sound = 0;
 	if(!(fd = open("sound.txt", O_RDONLY)))
 		return(ft_error("Error open file."));
-	if(!(stSound = malloc(sizeof(t_efct))))
-		return(ft_error("Error malloc stSound."));
-
-	stSound->next = NULL;
+//	if(!(snd->effect = (malloc(sizeof(t_efct))))
+//		return(ft_error("Error malloc stSound."));
+	//stSound->next = NULL;
 	if(get_next_line(fd, &line))
 	{
-		snd->effect = init_mlln(snd->effect);
-		snd->effect.name = ft_strdup(line);
-		init_path(&snd->effect);
-		snd->effect.next = stSound;
+		error = init_mlln(t_snd->effect);
+		snd->effect->name = ft_strdup(line);
+		init_path(snd->effect);
 		snd->nb_sound++;
-		printf("name = %s\n path = %s\n", snd->effect.name, snd->effect.path);
+		printf("name = %s\n path = %s\n", snd->effect->name, snd->effect->path);
 	}
 	while(get_next_line(fd, &line))
 	{
-		stSound = init_mlln(stSound);
+		snd->effect->next = stSound;
+		error = init_mlln(stSound);
 		stSound->name = ft_strdup(line);
 		init_path(stSound);
 		free(stSound);
@@ -71,7 +70,10 @@ int		init_Struct(t_snd *snd)
 		printf("name = %s\n path = %s\n", stSound->name, stSound->path);
 	}
 	printf("nb_sound = %d\n", snd->nb_sound);
-	return (0);
+	if (error == 1)
+		return (0);
+	else
+		return(ft_error("Error init maillon."));
 }
 
 int		parserAudio(t_snd *snd)
