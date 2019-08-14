@@ -6,7 +6,7 @@
 /*   By: jmarin-h <jmarin-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 19:07:17 by jmarin-h          #+#    #+#             */
-/*   Updated: 2019/08/14 20:17:21 by jmarin-h         ###   ########.fr       */
+/*   Updated: 2019/08/15 01:39:26 by jmarin-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int		parserAudio(t_snd *snd);
 int		init_name(t_snd *snd);
 void	get_soundInfo(t_snd *snd, char *sound);
 void	init_time(t_efct *efct, FILE *wavFd);
+void	vol_sound(int vol);
 void	cut_sound(char *sound, float start, float end);
 void	playSound(t_snd *snd, char *sound, float start, float end, unsigned int vol);
 

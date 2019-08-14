@@ -1,6 +1,6 @@
 #include "../includes/parser.h"
 
-void	vol_sound(char *sound, int vol)
+void	vol_sound(int vol)
 {
 	int	i;
 	int	volume;
@@ -28,8 +28,9 @@ void	playSound(t_snd *snd, char *sound, float start, float end, unsigned int vol
 			if(start != 0)
 				cut_sound(snd->effect[i].path, start, end);
 			if(vol != 128)
-				vol_sound(snd->effect[i].path, vol);
-			str = ft_strjoin("afplay ", snd->effect[i].path);
+				vol_sound(vol);
+		//	str = ft_strjoin("afplay ", snd->effect[i].path);
+			str = ft_strjoin("mplayer ", snd->effect[i].path);
 			str = ft_strjoin(str, ".wav&");
 			system(str);
 		}
