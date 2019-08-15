@@ -27,6 +27,21 @@ void	init_time(t_efct *efct, FILE *wavFd)
 	efct->in_seconds = (float)efct->ovl_size / (float)byterate;
 }
 
+
+void	vol_sound(int vol)
+{
+	char	*str;
+	char	*volume;
+
+	str = "osascript -e \" set volume ";
+//	str = "amixer sset 'Master' ";
+	volume = ft_itoa(vol);
+	str = ft_strjoin(str, volume);
+	str = ft_strjoin(str, "\"");
+//	str = ft_strjoin(str, "%");
+	system(str);
+}
+
 int			init_path(t_efct *efct)
 {
 	char	*str;

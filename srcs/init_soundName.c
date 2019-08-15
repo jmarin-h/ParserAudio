@@ -25,7 +25,7 @@ void	get_soundInfo(t_snd *snd, char *sound)
 
 	i = 0;
 	ok = 0;
-	while(i <= SOUNDS)
+	while(i < SOUNDS)
 	{
 		if(ft_strcmp(snd->effect[i].name, sound) == 0)
 		{

@@ -1,19 +1,13 @@
 #include "../includes/parser.h"
 
-void	vol_sound(int vol)
+int		ft_error(char *str)
 {
-	int	i;
-	int	volume;
-
-	i = 0;
-	// amixer sset 'Master' 50%
+	if(str)
+		ft_putendl(str);
+	return(1);
 }
 
-void	cut_sound(char *sound, float start, float end)
-{
-}
-
-void	playSound(t_snd *snd, char *sound, float start, float end, unsigned int vol)
+int		playSound(t_snd *snd, char *sound, int vol)
 {
 	int		i;
 	int		ok;
@@ -21,17 +15,19 @@ void	playSound(t_snd *snd, char *sound, float start, float end, unsigned int vol
 
 	i = 0;
 	ok = 0;
-	while(i <= SOUNDS)
+	while(i < SOUNDS)
 	{
 		if(ft_strcmp(sound, snd->effect[i].name) == 0)
 		{
 			ok = 1;
-			if(start != 0)
-				cut_sound(snd->effect[i].path, start, end);
-			if(vol != 128)
+//			if(vol >= 0 && vol <= 100)
+			if(vol > 0 && vol <= 8)
 				vol_sound(vol);
-		//	str = ft_strjoin("afplay ", snd->effect[i].path);
-			str = ft_strjoin("mplayer ", snd->effect[i].path);
+			else
+				return(ft_error("Set volume from 1 to 8."));
+//				return(ft_error("Set volume from 1 to 100."));
+			str = ft_strjoin("afplay ", snd->effect[i].path);
+//			str = ft_strjoin("mplayer ", snd->effect[i].path);
 			str = ft_strjoin(str, ".wav&");
 			system(str);
 		}
@@ -39,13 +35,7 @@ void	playSound(t_snd *snd, char *sound, float start, float end, unsigned int vol
 			ft_putendl("Sound not found.");
 		i++;
 	}
-}
-
-int		ft_error(char *str)
-{
-	if(str)
-		ft_putendl(str);
-	return(1);
+	return(0);
 }
 
 int		parserAudio(t_snd *snd)

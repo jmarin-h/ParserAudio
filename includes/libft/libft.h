@@ -6,7 +6,7 @@
 /*   By: jmarin-h <jmarin-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 13:54:04 by jmarin-h          #+#    #+#             */
-/*   Updated: 2019/04/11 17:21:40 by jmarin-h         ###   ########.fr       */
+/*   Updated: 2019/08/16 00:06:42 by jmarin-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int					ft_toupper(int c);
 int					ft_tolower(int c);
 int					ft_atoi(const char *nptr);
 int					ft_intlen(int nb);
-int					ft_isblank_extended(int c);
+int					ft_isblank(int c);
 int					ft_tabchr(char **str, int c);
 int					ft_strnlen(const char *str, char c);
 int					ft_countword(const char *str, char c);

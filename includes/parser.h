@@ -6,7 +6,7 @@
 /*   By: jmarin-h <jmarin-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 19:07:17 by jmarin-h          #+#    #+#             */
-/*   Updated: 2019/08/15 01:39:26 by jmarin-h         ###   ########.fr       */
+/*   Updated: 2019/08/16 00:47:52 by jmarin-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 #include "libft/libft.h"
 #include <math.h>
 #include <stdio.h>
-#define SOUNDS 38
-#define VOLUME_MAX 128
+#define SOUNDS 39
+#define VOLUME_MAX 8
 
 typedef	struct		s_efct
 {
@@ -45,10 +45,9 @@ int		ft_error(char *str);
 int		init_path(t_efct *efct);
 int		parserAudio(t_snd *snd);
 int		init_name(t_snd *snd);
+int		playSound(t_snd *snd, char *sound, int vol);
 void	get_soundInfo(t_snd *snd, char *sound);
 void	init_time(t_efct *efct, FILE *wavFd);
 void	vol_sound(int vol);
-void	cut_sound(char *sound, float start, float end);
-void	playSound(t_snd *snd, char *sound, float start, float end, unsigned int vol);
 
 #endif
