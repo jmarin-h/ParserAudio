@@ -6,6 +6,7 @@ void	vol_sound(int vol)
 	int	volume;
 
 	i = 0;
+	// amixer sset 'Master' 50%
 }
 
 void	cut_sound(char *sound, float start, float end)
