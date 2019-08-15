@@ -28,18 +28,26 @@ void	init_time(t_efct *efct, FILE *wavFd)
 }
 
 
-void	vol_sound(int vol)
+int		vol_sound(int vol)
 {
 	char	*str;
 	char	*volume;
 
-	str = "osascript -e \" set volume ";
-//	str = "amixer sset 'Master' ";
-	volume = ft_itoa(vol);
-	str = ft_strjoin(str, volume);
-	str = ft_strjoin(str, "\"");
-//	str = ft_strjoin(str, "%");
-	system(str);
+//	if(vol >= 0 && vol <= 100)
+	if(vol > 0 && vol <= 8)
+	{
+		str = "osascript -e \" set volume ";
+//		str = "amixer sset 'Master' ";
+		volume = ft_itoa(vol);
+		str = ft_strjoin(str, volume);
+		str = ft_strjoin(str, "\"");
+//		str = ft_strjoin(str, "%");
+		system(str);
+	}
+	else
+		return(ft_error("Set volume from 1 to 8."));
+//		return(ft_error("Set volume from 1 to 100."));
+	return(0);
 }
 
 int			init_path(t_efct *efct)

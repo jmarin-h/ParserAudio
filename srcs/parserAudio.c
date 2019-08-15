@@ -7,7 +7,7 @@ int		ft_error(char *str)
 	return(1);
 }
 
-int		playSound(t_snd *snd, char *sound, int vol)
+int		playSound(t_snd *snd, char *sound)
 {
 	int		i;
 	int		ok;
@@ -20,12 +20,6 @@ int		playSound(t_snd *snd, char *sound, int vol)
 		if(ft_strcmp(sound, snd->effect[i].name) == 0)
 		{
 			ok = 1;
-//			if(vol >= 0 && vol <= 100)
-			if(vol > 0 && vol <= 8)
-				vol_sound(vol);
-			else
-				return(ft_error("Set volume from 1 to 8."));
-//				return(ft_error("Set volume from 1 to 100."));
 			str = ft_strjoin("afplay ", snd->effect[i].path);
 //			str = ft_strjoin("mplayer ", snd->effect[i].path);
 			str = ft_strjoin(str, ".wav&");

@@ -6,7 +6,7 @@
 /*   By: jmarin-h <jmarin-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 19:07:17 by jmarin-h          #+#    #+#             */
-/*   Updated: 2019/08/16 00:47:52 by jmarin-h         ###   ########.fr       */
+/*   Updated: 2019/08/16 01:51:17 by jmarin-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ typedef	struct	s_snd
 	t_efct		effect[SOUNDS];
 }				t_snd;
 
+int		vol_sound(int vol);
 int		ft_error(char *str);
 int		init_path(t_efct *efct);
 int		parserAudio(t_snd *snd);
 int		init_name(t_snd *snd);
-int		playSound(t_snd *snd, char *sound, int vol);
+int		playSound(t_snd *snd, char *sound);
 void	get_soundInfo(t_snd *snd, char *sound);
 void	init_time(t_efct *efct, FILE *wavFd);
-void	vol_sound(int vol);
 
 #endif
