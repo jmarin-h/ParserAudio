@@ -6,7 +6,7 @@
 /*   By: jmarin-h <jmarin-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 19:07:17 by jmarin-h          #+#    #+#             */
-/*   Updated: 2019/08/16 02:24:46 by jmarin-h         ###   ########.fr       */
+/*   Updated: 2019/08/16 03:21:15 by jmarin-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef	struct	s_snd
 	t_efct		effect[SOUNDS];
 }				t_snd;
 
+int		stop_sound(void);
 int		vol_sound(int vol);
 int		ft_error(char *str);
 int		init_path(t_efct *efct);

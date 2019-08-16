@@ -24,6 +24,7 @@ int		play_sound(t_snd *snd, char *sound)
 //			str = ft_strjoin("mplayer ", snd->effect[i].path);
 			str = ft_strjoin(str, ".wav&");
 			system(str);
+			stop_sound();
 		}
 		i++;
 	}

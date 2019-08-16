@@ -27,6 +27,14 @@ void	init_time(t_efct *efct, FILE *wavFd)
 	efct->in_seconds = (float)efct->ovl_size / (float)byterate;
 }
 
+int		stop_sound(void)
+{
+	pid_t	pid;
+
+	pid = getpid();
+	printf("PID = %d\n", pid);	
+	return(0);
+}
 
 int		vol_sound(int vol)
 {
