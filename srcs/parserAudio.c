@@ -25,10 +25,10 @@ int		playSound(t_snd *snd, char *sound)
 			str = ft_strjoin(str, ".wav&");
 			system(str);
 		}
-		if(i == SOUNDS && ok == 0)
-			ft_putendl("Sound not found.");
 		i++;
 	}
+	if(i == SOUNDS && ok == 0)
+		return(ft_error("Sound not found."));
 	return(0);
 }
 
@@ -39,11 +39,13 @@ int		parserAudio(t_snd *snd)
 
 	error = 0;
 	i = 0;
-	init_name(snd);
+	error = init_name(snd);
 	while(i <= (SOUNDS - 1) && error == 0)
 	{
 		error = init_path(&snd->effect[i]);
 		i++;
 	}
+	if(error == 1)
+		return(1);
 	return(0);
 }
