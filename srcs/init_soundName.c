@@ -18,7 +18,7 @@ int		init_name(t_snd *snd)
 	close(fd);
 	return(0);
 }
-void	get_soundInfo(t_snd *snd, char *sound)
+int		info_sound(t_snd *snd, char *sound)
 {
 	int	i;
 	int	ok;
@@ -44,7 +44,8 @@ void	get_soundInfo(t_snd *snd, char *sound)
 			printf("(printf: %f seconds)\n", snd->effect[i].in_seconds);
 		}
 		if(i == SOUNDS && ok == 0)
-			ft_putendl("Sound not found.");
+			return(ft_error("Sound not found."));
 		i++;
 	}
+	return(0);
 }

@@ -7,7 +7,7 @@ int		ft_error(char *str)
 	return(1);
 }
 
-int		playSound(t_snd *snd, char *sound)
+int		play_sound(t_snd *snd, char *sound)
 {
 	int		i;
 	int		ok;

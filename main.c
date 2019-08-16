@@ -6,7 +6,7 @@
 /*   By: jmarin-h <jmarin-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 19:06:14 by jmarin-h          #+#    #+#             */
-/*   Updated: 2019/08/16 01:47:16 by jmarin-h         ###   ########.fr       */
+/*   Updated: 2019/08/16 02:25:55 by jmarin-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ int		main(int ac, char **av)
 	snd = *(t_snd *)malloc(sizeof(t_snd));
 	parserAudio(&snd);
 	if(ac == 2)
-		playSound(&snd, av[1]);
+		play_sound(&snd, av[1]);
 	if(ac == 3 && ft_strcmp(av[2], "info") == 0)
-		get_soundInfo(&snd, av[1]);
+		info_sound(&snd, av[1]);
 	else if (ac == 3)
 	{
 		vol = ft_atoi(av[2]);
 		vol_sound(vol);
-		playSound(&snd, av[1]);
+		play_sound(&snd, av[1]);
 	}
 	return(0);
 }
