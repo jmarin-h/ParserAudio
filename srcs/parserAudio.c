@@ -20,13 +20,15 @@ int		play_sound(t_snd *snd, char *sound)
 		if(ft_strcmp(sound, snd->effect[i].name) == 0)
 		{
 			ok = 1;
-			str = ft_strjoin("afplay ", snd->effect[i].path);
+			str = ft_strjoin("", snd->effect[i].path);
 //			str = ft_strjoin("mplayer ", snd->effect[i].path);
-			str = ft_strjoin(str, ".wav&");
+//			str = ft_strjoin(str, ".wav&");
+			str = ft_strjoin(str, ".wav");
 //			system(str);
 //			remplacer system() -> execv(), execve() ... (appel systeme)
 			printf("str in play_sound = %s\n", str);
-			execv("/usr/bin/afplay", &str);
+			if(execv("/bin/afplay", &str) == -1)
+				perror("execv");
 			init_pid(&snd->effect[i]);			
 		}
 		i++;
