@@ -23,8 +23,11 @@ int		play_sound(t_snd *snd, char *sound)
 			str = ft_strjoin("afplay ", snd->effect[i].path);
 //			str = ft_strjoin("mplayer ", snd->effect[i].path);
 			str = ft_strjoin(str, ".wav&");
-			system(str);
-			stop_sound();
+//			system(str);
+//			remplacer system() -> execv(), execve() ... (appel systeme)
+			printf("str in play_sound = %s\n", str);
+			execv("/usr/bin/afplay", &str);
+			init_pid(&snd->effect[i]);			
 		}
 		i++;
 	}

@@ -27,12 +27,33 @@ void	init_time(t_efct *efct, FILE *wavFd)
 	efct->in_seconds = (float)efct->ovl_size / (float)byterate;
 }
 
-int		stop_sound(void)
+int		init_pid(t_efct *efct)
 {
-	pid_t	pid;
+	efct->pid = getpid();
+	efct->pid += 2;
+	printf("PID in init_pid = %d\n", efct->pid);	
+	return(0);
+}
 
-	pid = getpid();
-	printf("PID = %d\n", pid);	
+int		stop_sound(t_snd *snd, char *sound)
+{
+	int i;
+	int	ok;
+
+	i = 0;
+	ok = 0;
+	while(i < SOUNDS)
+	{
+		if(ft_strcmp(sound, snd->effect[i].name) == 0)
+		{
+			ok = 1;
+		printf("PID in stop_sound = %d\n", snd->effect[i].pid);	
+			kill(snd->effect[i].pid, SIGKILL);
+		}
+		i++;
+	}
+	if(i == SOUNDS && ok == 0)
+		return(ft_error("Sound not found..........."));
 	return(0);
 }
 
@@ -41,20 +62,20 @@ int		vol_sound(int vol)
 	char	*str;
 	char	*volume;
 
-//	if(vol >= 0 && vol <= 100)
+	//	if(vol >= 0 && vol <= 100)
 	if(vol > 0 && vol <= 8)
 	{
 		str = "osascript -e \" set volume ";
-//		str = "amixer sset 'Master' ";
+		//		str = "amixer sset 'Master' ";
 		volume = ft_itoa(vol);
 		str = ft_strjoin(str, volume);
 		str = ft_strjoin(str, "\"");
-//		str = ft_strjoin(str, "%");
+		//		str = ft_strjoin(str, "%");
 		system(str);
 	}
 	else
 		return(ft_error("Set volume from 1 to 8."));
-//		return(ft_error("Set volume from 1 to 100."));
+	//		return(ft_error("Set volume from 1 to 100."));
 	return(0);
 }
 
