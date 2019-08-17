@@ -62,7 +62,6 @@ int		vol_sound(int vol)
 	char	*str;
 	char	*volume;
 
-//	if(vol >= 0 && vol <= 100)
 	if(vol > 0 && vol <= 8)
 	{
 		str = "osascript -e \" set volume ";
@@ -76,7 +75,6 @@ int		vol_sound(int vol)
 	}
 	else
 		return(ft_error("Set volume from 1 to 8."));
-//		return(ft_error("Set volume from 1 to 100."));
 	return(0);
 }
 

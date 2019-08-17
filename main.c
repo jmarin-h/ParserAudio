@@ -6,13 +6,13 @@
 /*   By: jmarin-h <jmarin-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 19:06:14 by jmarin-h          #+#    #+#             */
-/*   Updated: 2019/08/17 02:50:31 by jmarin-h         ###   ########.fr       */
+/*   Updated: 2019/08/17 04:28:43 by jmarin-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/parser.h"
 
-int		main(int ac, char **av)
+int		main(int ac, char **av, char **env)
 {
 	t_snd	snd;
 
