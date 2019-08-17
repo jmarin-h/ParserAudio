@@ -53,7 +53,7 @@ int		stop_sound(t_snd *snd, char *sound)
 		i++;
 	}
 	if(i == SOUNDS && ok == 0)
-		return(ft_error("Sound not found..........."));
+		return(ft_error("Sound not found.."));
 	return(0);
 }
 
@@ -62,20 +62,21 @@ int		vol_sound(int vol)
 	char	*str;
 	char	*volume;
 
-	//	if(vol >= 0 && vol <= 100)
+//	if(vol >= 0 && vol <= 100)
 	if(vol > 0 && vol <= 8)
 	{
 		str = "osascript -e \" set volume ";
-		//		str = "amixer sset 'Master' ";
+//		str = "amixer sset 'Master' ";
 		volume = ft_itoa(vol);
 		str = ft_strjoin(str, volume);
 		str = ft_strjoin(str, "\"");
-		//		str = ft_strjoin(str, "%");
+//		str = ft_strjoin(str, "%");
+////	change system() for execv()
 		system(str);
 	}
 	else
 		return(ft_error("Set volume from 1 to 8."));
-	//		return(ft_error("Set volume from 1 to 100."));
+//		return(ft_error("Set volume from 1 to 100."));
 	return(0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: jmarin-h <jmarin-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 19:07:17 by jmarin-h          #+#    #+#             */
-/*   Updated: 2019/08/17 00:36:07 by jmarin-h         ###   ########.fr       */
+/*   Updated: 2019/08/17 03:40:29 by jmarin-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include "libft/libft.h"
 #include <math.h>
+#include <errno.h>
 #include <signal.h>
 #include <stdio.h>
 #define SOUNDS 39
@@ -25,7 +26,7 @@ typedef	struct		s_efct
 	int				pid;
 	char			*name;
 	char			*path;
-	float				in_seconds;
+	float			in_seconds;
 	unsigned int	ovl_size;
 	unsigned int	volume;
 }					t_efct;
@@ -37,12 +38,13 @@ typedef struct		s_chnl
 	int				volume;
 }					t_chnl;
 
-typedef	struct	s_snd
+typedef	struct		s_snd
 {
-	int			num_sound;
-	t_efct		effect[SOUNDS];
-}				t_snd;
+	int				num_sound;
+	t_efct			effect[SOUNDS];
+}					t_snd;
 
+pid_t	create_process(void);
 int		vol_sound(int vol);
 int		ft_error(char *str);
 int		init_pid(t_efct *efct);

@@ -7,27 +7,36 @@ int		ft_error(char *str)
 	return(1);
 }
 
+pid_t	create_process(void)
+{
+	pid_t pid;
+
+	pid = fork();
+	while ((pid == -1) && (errno == EAGAIN));
+	
+	return pid;
+}
+
 int		play_sound(t_snd *snd, char *sound)
 {
 	int		i;
 	int		ok;
-	char	*str;
+	pid_t	pid;
+	char	*tab[3];
 
 	i = 0;
 	ok = 0;
+	pid = create_process();
+	perror("fork");
 	while(i < SOUNDS)
 	{
 		if(ft_strcmp(sound, snd->effect[i].name) == 0)
 		{
 			ok = 1;
-			str = ft_strjoin("", snd->effect[i].path);
-//			str = ft_strjoin("mplayer ", snd->effect[i].path);
-//			str = ft_strjoin(str, ".wav&");
-			str = ft_strjoin(str, ".wav");
-//			system(str);
-//			remplacer system() -> execv(), execve() ... (appel systeme)
-			printf("str in play_sound = %s\n", str);
-			if(execv("/bin/afplay", &str) == -1)
+			tab[0] = ft_strdup("afplay");
+			tab[1] = ft_strjoin(snd->effect[i].path, ".wav");
+			tab[2] = 0;
+			if(execv("/usr/bin/afplay", tab) == 1)
 				perror("execv");
 			init_pid(&snd->effect[i]);			
 		}
