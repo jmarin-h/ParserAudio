@@ -6,7 +6,7 @@
 /*   By: jmarin-h <jmarin-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 19:06:14 by jmarin-h          #+#    #+#             */
-/*   Updated: 2019/08/17 04:28:43 by jmarin-h         ###   ########.fr       */
+/*   Updated: 2019/08/19 22:02:09 by jmarin-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,15 @@ int		main(int ac, char **av, char **env)
 	else if(ac == 4 && ft_strcmp(av[2], "stop") == 0)
 	{
 		play_sound(&snd, av[1]);
-		printf("je suis la\n");
 		sleep(ft_atoi(av[3]));
 		stop_sound(&snd, av[1]);
 	}
 	else if (ac == 3)
 	{
 		vol_sound(ft_atoi(av[2]));
-		play_sound(&snd, av[1]);
+		// modif process vol_sound
+		// join process vol_s play_s
+	//	play_sound(&snd, av[1]);
 	}
 	return(0);
 }

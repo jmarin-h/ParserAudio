@@ -61,33 +61,28 @@ int		vol_sound(int vol)
 {
 	pid_t	pid;
 	char	*tab[3];
-//	char	*str;
+	char	*str;
 	char	*volume;
 
 	if(vol > 0 && vol <= 100)
 	{
-		tab[0] = ft_strdup("amixer");  /* osascript */
-		tab[1] = ft_strdup("sset 'Master' 20%"); /* -e \" set volume " */
-		tab[2] = 0;
-//		str = "osascript -e \" set volume ";
-//		str = "amixer sset 'Master' ";
-		volume = ft_itoa(vol);
-//		str = ft_strjoin(str, volume);
-//		str = ft_strjoin(str, "\"");
-//		str = ft_strjoin(str, "%");
+//		str = ft_strjoin("-e \"set volume ", ft_itoa(vol));
+		str = ft_strjoin("sset 'Master' ", ft_itoa(vol));
+		tab[0] = ft_strdup("amixer");  /* "osascript" */
+		tab[1] = ft_strjoin(str, "%"); /* "\"" */
+		tab[2] = NULL;
+		printf("tab[1] = %s\n", tab[1]);
 		pid = fork();
-		switch(pid)
+		while(1)
 		{
-			case 0:
+			if(pid == 0)
+				wait(NULL);
+			if (pid)
 			{
 				execlp(tab[0], tab[1], tab[2]);
-			}
-			default:
-			{
-				wait(NULL);
+				break;
 			}
 		}
-////	change system() for execv()
 //		system(str);
 	}
 	else
