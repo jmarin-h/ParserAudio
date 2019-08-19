@@ -59,19 +59,36 @@ int		stop_sound(t_snd *snd, char *sound)
 
 int		vol_sound(int vol)
 {
-	char	*str;
+	pid_t	pid;
+	char	*tab[3];
+//	char	*str;
 	char	*volume;
 
-	if(vol > 0 && vol <= 8)
+	if(vol > 0 && vol <= 100)
 	{
-		str = "osascript -e \" set volume ";
+		tab[0] = ft_strdup("amixer");  /* osascript */
+		tab[1] = ft_strdup("sset 'Master' 20%"); /* -e \" set volume " */
+		tab[2] = 0;
+//		str = "osascript -e \" set volume ";
 //		str = "amixer sset 'Master' ";
 		volume = ft_itoa(vol);
-		str = ft_strjoin(str, volume);
-		str = ft_strjoin(str, "\"");
+//		str = ft_strjoin(str, volume);
+//		str = ft_strjoin(str, "\"");
 //		str = ft_strjoin(str, "%");
+		pid = fork();
+		switch(pid)
+		{
+			case 0:
+			{
+				execlp(tab[0], tab[1], tab[2]);
+			}
+			default:
+			{
+				wait(NULL);
+			}
+		}
 ////	change system() for execv()
-		system(str);
+//		system(str);
 	}
 	else
 		return(ft_error("Set volume from 1 to 8."));

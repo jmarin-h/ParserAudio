@@ -26,11 +26,12 @@ int		play_sound(t_snd *snd, char *sound)
 			if (pid == 0)
 			{
 				extern char **environ;
-				tab[0] = ft_strdup("afplay");
+				tab[0] = ft_strdup("mplayer");
 				tab[1] = ft_strjoin(snd->effect[i].path, ".wav");
 				tab[2] = 0;
 				init_pid(&snd->effect[i]);
-				if(execve("/usr/bin/afplay", tab, environ) == 1)
+				printf("tab[1] = %s\n", tab[1]);
+				if(execve("/usr/bin/mplayer", tab, environ) == 1)
 					perror("execv");
 			}
 			else if (pid > 0)
