@@ -67,22 +67,22 @@ int		vol_sound(int vol)
 	if(vol > 0 && vol <= 100)
 	{
 //		str = ft_strjoin("-e \"set volume ", ft_itoa(vol));
-		str = ft_strjoin("sset 'Master' ", ft_itoa(vol));
-		tab[0] = ft_strdup("amixer");  /* "osascript" */
-		tab[1] = ft_strjoin(str, "%"); /* "\"" */
-		tab[2] = NULL;
-		printf("tab[1] = %s\n", tab[1]);
-		pid = fork();
-		while(1)
-		{
-			if(pid == 0)
-				wait(NULL);
-			if (pid)
-			{
-				execlp(tab[0], tab[1], tab[2]);
-				break;
-			}
-		}
+//		str = ft_strjoin("sset 'Master' ", ft_itoa(vol));
+//		tab[0] = ft_strdup("amixer");  /* "osascript" */
+//		tab[1] = ft_strjoin(str, "%"); /* "\"" */
+//		tab[2] = NULL;
+//		printf("tab[1] = %s\n", tab[1]);
+//		pid = fork();
+//		while(1)
+//		{
+//			if(pid == 0)
+//				wait(NULL);
+//			if (pid)
+//			{
+		execlp(tab[0], tab[1], tab[2]);
+//				break;
+//			}
+//		}
 //		system(str);
 	}
 	else

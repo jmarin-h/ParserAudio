@@ -6,7 +6,7 @@
 /*   By: jmarin-h <jmarin-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 19:07:17 by jmarin-h          #+#    #+#             */
-/*   Updated: 2019/08/19 18:59:36 by jmarin-h         ###   ########.fr       */
+/*   Updated: 2019/08/20 18:12:58 by jmarin-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ int		init_pid(t_efct *efct);
 int		init_path(t_efct *efct);
 int		parserAudio(t_snd *snd);
 int		init_name(t_snd *snd);
-int		stop_sound(t_snd *snd, char *sound);
-int		play_sound(t_snd *snd, char *sound);
+//int		play_sound(t_snd *snd, char *sound);
+int		play_sound(t_snd *snd, char *sound, void arg3);
 int		info_sound(t_snd *snd, char *sound);
 void	init_time(t_efct *efct, FILE *wavFd);
 
