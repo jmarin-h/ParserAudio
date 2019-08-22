@@ -18,6 +18,7 @@ int		init_name(t_snd *snd)
 	close(fd);
 	return(0);
 }
+
 int		info_sound(t_snd *snd, char *sound)
 {
 	int	i;

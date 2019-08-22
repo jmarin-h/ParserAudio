@@ -1,20 +1,38 @@
 #include "../includes/parser.h"
 
-int		ft_error(char *str)
+int				ft_error(char *str)
 {
 	if(str)
 		ft_putendl(str);
 	return(1);
 }
 
-//int		play_sound(t_snd *snd, char *sound)
-int		play_sound(t_snd *snd, char *sound, void arg3)
+int				play_sound(t_snd *snd, char *sound, char *arg3)
 {
-	int		i;
-	int		status;
-	int		ok;
-	pid_t	pid;
-	char	*tab[3];
+	int			status;
+	pid_t		pid;
+
+	pid = fork();
+//	init_pid(snd->effect);
+	if (pid > 0)
+		wait(&status);
+	if (pid == 0)
+	{
+		volume(ft_atoi(arg3));
+		ft_putendl("line 19 : here is ok");
+		play(&snd, sound);
+	}
+	else
+		return(ft_error("fork: error\n"));
+	return(0);
+}
+
+int				play(t_snd *snd, char *sound)
+{
+	int			i;
+	int			ok;
+	char		*tab[3];
+	extern char **environ;
 
 	i = 0;
 	ok = 0;
@@ -23,22 +41,12 @@ int		play_sound(t_snd *snd, char *sound, void arg3)
 		if(ft_strcmp(sound, snd->effect[i].name) == 0)
 		{
 			ok = 1;
-			pid = fork();
-			if (pid == 0)
-			{
-				extern char **environ;
-				tab[0] = ft_strdup("mplayer");
-				tab[1] = ft_strjoin(snd->effect[i].path, ".wav");
-				tab[2] = 0;
-				init_pid(&snd->effect[i]);
-				printf("tab[1] = %s\n", tab[1]);
-				if(execve("/usr/bin/mplayer", tab, environ) == 1)
-					perror("execv");
-			}
-			else if (pid > 0)
-				wait(&status);
-			else
-				printf("fork: error\n");
+			tab[0] = ft_strdup("afplay");
+			tab[1] = ft_strjoin(snd->effect[i].path, ".wav");
+			tab[2] = 0;
+			printf("play tab[1] = %s\n", tab[1]);
+			if(execve("/usr/bin/mplayer", tab, environ) == 1)
+				perror("execv");
 		}
 		i++;
 	}
@@ -47,10 +55,10 @@ int		play_sound(t_snd *snd, char *sound, void arg3)
 	return(0);
 }
 
-int		parserAudio(t_snd *snd)
+int				parserAudio(t_snd *snd)
 {
-	int		i;
-	int		error;
+	int			i;
+	int			error;
 
 	error = 0;
 	i = 0;

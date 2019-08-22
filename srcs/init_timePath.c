@@ -27,7 +27,7 @@ void	init_time(t_efct *efct, FILE *wavFd)
 	efct->in_seconds = (float)efct->ovl_size / (float)byterate;
 }
 
-int		init_pid(t_efct *efct)
+int			init_pid(t_efct *efct)
 {
 	efct->pid = getpid();
 	efct->pid += 2;
@@ -35,10 +35,10 @@ int		init_pid(t_efct *efct)
 	return(0);
 }
 
-int		stop_sound(t_snd *snd, char *sound)
+int			stop_sound(t_snd *snd, char *sound)
 {
-	int i;
-	int	ok;
+	int 	i;
+	int		ok;
 
 	i = 0;
 	ok = 0;
@@ -57,36 +57,27 @@ int		stop_sound(t_snd *snd, char *sound)
 	return(0);
 }
 
-int		vol_sound(int vol)
+int			volume(int vol)
 {
-	pid_t	pid;
 	char	*tab[3];
 	char	*str;
-	char	*volume;
 
 	if(vol > 0 && vol <= 100)
 	{
-//		str = ft_strjoin("-e \"set volume ", ft_itoa(vol));
+		str = ft_strjoin("-e \"set volume ", ft_itoa(vol));
 //		str = ft_strjoin("sset 'Master' ", ft_itoa(vol));
-//		tab[0] = ft_strdup("amixer");  /* "osascript" */
-//		tab[1] = ft_strjoin(str, "%"); /* "\"" */
-//		tab[2] = NULL;
-//		printf("tab[1] = %s\n", tab[1]);
-//		pid = fork();
-//		while(1)
-//		{
-//			if(pid == 0)
-//				wait(NULL);
-//			if (pid)
-//			{
+		tab[0] = ft_strdup("osascript");  /*osascript --- amixer*/
+		tab[1] = ft_strjoin(str, "\""); /* \" --- %*/
+		tab[2] = NULL;
+		printf("volume tab[1] = %s\n", tab[1]);
 		execlp(tab[0], tab[1], tab[2]);
-//				break;
-//			}
-//		}
-//		system(str);
+		ft_putendl("line 75 : here is ok");
+//		if(execlp(tab[0], tab[1], tab[2]) == 1)
+//			perror("execlp");
 	}
 	else
 		return(ft_error("Set volume from 1 to 8."));
+	ft_putendl("line 77 : here is ok");
 	return(0);
 }
 
