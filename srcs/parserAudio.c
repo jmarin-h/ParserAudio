@@ -18,12 +18,13 @@ int				play_sound(t_snd *snd, char *sound, char *arg3)
 		wait(&status);
 	if (pid == 0)
 	{
+		ft_putendl("check line 21");
 		volume(ft_atoi(arg3));
 		ft_putendl("line 19 : here is ok");
-		play(&snd, sound);
+		play(snd, sound);
 	}
-	else
-		return(ft_error("fork: error\n"));
+//	else
+//		return(ft_error("fork: error\n"));
 	return(0);
 }
 
@@ -36,8 +37,10 @@ int				play(t_snd *snd, char *sound)
 
 	i = 0;
 	ok = 0;
+	ft_putendl("check line 39");
 	while(i < SOUNDS && ok == 0)
 	{
+		ft_putendl("check line 42");
 		if(ft_strcmp(sound, snd->effect[i].name) == 0)
 		{
 			ok = 1;

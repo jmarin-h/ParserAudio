@@ -59,25 +59,29 @@ int			stop_sound(t_snd *snd, char *sound)
 
 int			volume(int vol)
 {
-	char	*tab[3];
+	char	*tab[5];
 	char	*str;
 
 	if(vol > 0 && vol <= 100)
 	{
-		str = ft_strjoin("-e \"set volume ", ft_itoa(vol));
+//		str = ft_strjoin("-e \"set volume ", ft_itoa(vol));
 //		str = ft_strjoin("sset 'Master' ", ft_itoa(vol));
-		tab[0] = ft_strdup("osascript");  /*osascript --- amixer*/
-		tab[1] = ft_strjoin(str, "\""); /* \" --- %*/
-		tab[2] = NULL;
-		printf("volume tab[1] = %s\n", tab[1]);
-		execlp(tab[0], tab[1], tab[2]);
-		ft_putendl("line 75 : here is ok");
-//		if(execlp(tab[0], tab[1], tab[2]) == 1)
-//			perror("execlp");
+		tab[0] = ft_strdup("amixer"); 	/*osascript   ---  amixer*/
+		tab[1] = ft_strdup("amixer");	/*osascript   ---  amixer*/
+		tab[2] = ft_strdup("sset");	/*	 -e   ---    sset*/
+		tab[3] = ft_strdup("'Master'");	/*"set volume" - 'Master'*/
+		tab[4] = ft_strjoin(ft_itoa(vol), "%");
+		tab[5] = (char *)NULL;
+		printf("tab = '%s' '%s' '%s' '%s' '%s'\n", tab[1],
+				tab[2], tab[3], tab[4], tab[5]);
+		if(execlp(tab[0], tab[1], tab[2], tab[3], tab[4], tab[5]) == 1)
+			perror("execlp");
 	}
 	else
-		return(ft_error("Set volume from 1 to 8."));
-	ft_putendl("line 77 : here is ok");
+	{
+		ft_putendl("line 77 : here is ok");
+		return(ft_error("Set volume from 1 to 100."));
+	}
 	return(0);
 }
 
