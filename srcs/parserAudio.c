@@ -18,10 +18,10 @@ int				play_sound(t_snd *snd, char *sound, char *arg3)
 		wait(&status);
 	if (pid == 0)
 	{
-		ft_putendl("check line 21");
+		ft_putendl("check line 21 parseraudio.c");
 		volume(ft_atoi(arg3));
-		ft_putendl("line 19 : here is ok");
-		play(snd, sound);
+		ft_putendl("check line 23 parseraudio.c");
+//		play(snd, sound);
 	}
 //	else
 //		return(ft_error("fork: error\n"));
